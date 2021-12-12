@@ -63,7 +63,9 @@
               var iframe = $('#speedgrader_iframe');
               var curQuestion = 0;
               var top = $(iframe).contents().find('.question:not(.matching_question, .multiple_choice_question, .true_false_question, .correct)').first().offset().top;
-              $(iframe).contents().children().animate({scrollTop: top}, 500);
+              $(iframe).contents().children().animate({scrollTop: top}, 500, function() {
+                  $(els[curQuestion]).find('.question_input').first().focus();
+              });
               $('#justin-next, #justin-last').prop('disabled', false);
               $('#justin-previous, #justin-first').prop('disabled', true);
               $('#justin-buttons').attr('data-qnum', curQuestion);
@@ -80,7 +82,9 @@
               if(curQuestion == els.length - 1) $('#justin-next, #justin-last').prop('disabled', true);
               var top = $(els[curQuestion]).offset().top;
               console.log(top);
-              $(iframe).contents().children().animate({scrollTop: top}, 500);
+              $(iframe).contents().children().animate({scrollTop: top}, 500, function() {
+                  $(els[curQuestion]).find('.question_input').first().focus();
+              });
               $('#justin-buttons').attr('data-qnum', curQuestion);
           });
           $('#justin-previous').on('click', function() {
@@ -92,7 +96,9 @@
               if(curQuestion == 0) $('#justin-first, #justin-previous').prop('disabled', true);
               if(curQuestion < els.length - 1) $('#justin-next, #justin-last').prop('disabled', false);
               var top = $(els[curQuestion]).offset().top;
-              $(iframe).contents().children().animate({scrollTop: top}, 500);
+              $(iframe).contents().children().animate({scrollTop: top}, 500, function() {
+                  $(els[curQuestion]).find('.question_input').first().focus();
+              });
               $('#justin-buttons').attr('data-qnum', curQuestion);
           });
           $('#justin-last').on('click', function() {
@@ -101,7 +107,9 @@
               var curQuestion = $('#justin-buttons').attr('data-qnum');
               curQuestion = els.length - 1;
               var top = $(els[curQuestion]).offset().top;
-              $(iframe).contents().children().animate({scrollTop: top}, 500);
+              $(iframe).contents().children().animate({scrollTop: top}, 500, function() {
+                  $(els[curQuestion]).find('.question_input').first().focus();
+              });
               $('#justin-buttons').attr('data-qnum', curQuestion);
               $('#justin-next, #justin-last').prop('disabled', true);
               $('#justin-previous, #justin-first').prop('disabled', false);
